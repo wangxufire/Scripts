@@ -8,7 +8,7 @@ do
   python3 ./scripts/qq_read.py
   current=`date +%s`
   runtime=`expr $current - $start`
-  if (($runtime>21240)); then # 5.9*60*60
+  if (($runtime>20880)); then # 5.8*60*60
     echo "all work is done"
     break
   fi
