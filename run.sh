@@ -1,7 +1,5 @@
 #!/bin/bash  
 
-touch /tmp/keepalive
-
 for((i=1;i<=250;i++));  
 do   
   echo "run $i times"
