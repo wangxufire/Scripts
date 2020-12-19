@@ -5,7 +5,7 @@ start=`date +%s`
 for((i=1;i<=250;i++));  
 do   
   echo "run $i times"
-  # python3 ./scripts/qq_read.py
+  python3 ./scripts/qq_read.py
   sleep 5m 
   current=`date +%s`
   runtime=`expr $current - $start`
