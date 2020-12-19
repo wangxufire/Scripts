@@ -12,5 +12,5 @@ do
     echo "all work is done"
     break
   fi
-  sleep 5m
+  sleep 4m
 done  
