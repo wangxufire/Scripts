@@ -120,18 +120,19 @@ if ($.isNode()) {
 
 
 function GetCookie() {
-if ($request && $request.method != 'OPTIONS' && $request.url.match(/\/\d\/[a-z]+\/\w+\?gsid/)) {
-  const signurlVal = $request.url
-  const token = signurlVal.split(`?`)[1]
-  //const signheaderVal = JSON.stringify($request.headers)
-   $.log(`token:${token}`)
-  if (token) $.setdata(token, 'sy_token_wb')
-  $.msg($.name, `获取微博签到Cookie: 成功`, ``)
-} else if ($request && $request.method != 'OPTIONS' && $request.url.match(/\/home\/welfare\/signin\/do\?_=[1-9]+/)) {
-  const payheaderVal = JSON.stringify($request.headers)
-  $.log(`pay-token:${payheaderVal}`)
-  if (payheaderVal) $.setdata(payheaderVal,  'sy_payheader_wb')
-  $.msg($.name, `获取微博钱包Cookie: 成功`, ``)}
+  if ($request && $request.method != 'OPTIONS' && $request.url.match(/\/\d\/[a-z]+\/\w+\?gsid/)) {
+    const signurlVal = $request.url
+    const token = signurlVal.split(`?`)[1]
+    //const signheaderVal = JSON.stringify($request.headers)
+    $.log(`token:${token}`)
+    if (token) $.setdata(token, 'sy_token_wb')
+    $.msg($.name, `获取微博签到Cookie: 成功`, ``)
+  } else if ($request && $request.method != 'OPTIONS' && $request.url.match(/\/home\/welfare\/signin\/do\?_=[1-9]+/)) {
+    const payheaderVal = JSON.stringify($request.headers)
+    if (payheaderVal) $.setdata(payheaderVal, 'sy_payheader_wb')
+    $.log(`pay-token:${payheaderVal}`)
+    $.msg($.name, `获取微博钱包Cookie: 成功`, ``)
+  }
 }
 
 //微博签到
