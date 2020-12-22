@@ -1,0 +1,19 @@
+name: vmess proxy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+  watch:
+    type: [started]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ngrok
+      run:  curl -o ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && unzip ngrok.zip && ./ngrok tcp --log stdout --region=${{ secrets.NG_REGION }} --authtoken ${{ secrets.NG_TOKEN }} 10086 &
+    - name: run ui
+      # b831381d-6324-4d53-ad4f-8cda48b30811
+      run: echo 'ewogICJpbmJvdW5kcyI6IFt7CiAgICAicG9ydCI6IDEwMDg2LAogICAgInByb3RvY29sIjogInZtZXNzIiwKICAgICJzZXR0aW5ncyI6IHsKICAgICAgImNsaWVudHMiOiBbeyAiaWQiOiAiYjgzMTM4MWQtNjMyNC00ZDUzLWFkNGYtOGNkYTQ4YjMwODExIiB9XQogICAgfQogIH1dLAogICJvdXRib3VuZHMiOiBbewogICAgInByb3RvY29sIjogImZyZWVkb20iLAogICAgInNldHRpbmdzIjoge30KICB9XQp9' > base64.config  && cat  base64.config | base64 -d > config.json && docker run --restart=always --name=v2ray -p10086:10086 -v $PWD/config.json:/etc/v2ray/config.json v2fly/v2fly-core
