@@ -129,13 +129,9 @@ if ($request && $request.method != 'OPTIONS' && $request.url.match(/\/\d\/[a-z]+
   $.msg($.name, `获取微博签到Cookie: 成功`, ``)
 } else if ($request && $request.method != 'OPTIONS' && $request.url.match(/\/home\/welfare\/signin\/do\?_=[1-9]+/)) {
   const payheaderVal = JSON.stringify($request.headers)
-  if (payheaderVal) {
   $.log(`pay-token:${payheaderVal}`)
-  $.msg($.name, `获取微博钱包Cookie: 成功`, ``)
-  $.msg($.name, payheaderVal, ``)
-  $.setdata(payheaderVal,  'sy_payheader_wb')
-  }
-}
+  if (payheaderVal) $.setdata(payheaderVal,  'sy_payheader_wb')
+  $.msg($.name, `获取微博钱包Cookie: 成功`, ``)}
 }
 
 //微博签到
