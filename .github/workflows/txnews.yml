@@ -1,0 +1,36 @@
+name: 腾讯新闻
+
+on:
+  workflow_dispatch:
+  schedule:
+     - cron: '*/7 * * * *'
+  watch:
+     types: started
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+      TXNEWS_SIGN: ${{ secrets.TXNEWS_SIGN }}
+      TXNEWS_COOKIE: ${{ secrets.TXNEWS_COOKIE }}
+      TXNEWS_VIDEO: ${{ secrets.TXNEWS_VIDEO }}
+    steps:
+      - name: Checkout
+        run: |
+          git clone https://github.com/Sunert/Scripts.git ~/Scripts
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: |
+          cd ~/Scripts
+          npm install
+      - name: '运行 【腾讯新闻】'
+        if: env.TXNEWS_COOKIE
+        run: |
+          cd ~/Scripts
+          node Task/txnews.js
+        env:
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
