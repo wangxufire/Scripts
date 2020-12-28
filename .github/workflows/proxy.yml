@@ -1,4 +1,4 @@
-name: vmess proxy
+name: Proxy
 
 on:
   workflow_dispatch:
