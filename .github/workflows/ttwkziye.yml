@@ -3,7 +3,7 @@ name: 支付宝天天挖矿
 on:
   workflow_dispatch:
   schedule:
-     - cron: '15 19 * * *'
+     - cron: '15 8 * * *'
   watch:
     types: started
 jobs:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        ZFBWK_BODY: ${{ secrets.ZFBWK_BODY }}
+        ZFBWK_BODY: ${{ toJson(secrets.ZFBWK_BODY) }}
         ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
     steps:
       # - name: Checkout
