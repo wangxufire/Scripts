@@ -14,6 +14,10 @@ jobs:
     #     ZFBWK_BODY: ${{ secrets.ZFBWK_BODY }}
     #     ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
     steps:
+      - shell: bash
+        env:
+          ZFBWK_BODY: ${{ secrets.ZFBWK_BODY }}
+          ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
       # - name: Checkout
       #   run: |
       #     git clone https://github.com/ziye12/JavaScript.git ~/Scripts
