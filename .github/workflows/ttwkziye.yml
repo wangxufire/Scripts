@@ -10,9 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    env:
-        ZFBWK_BODY: ${{ secrets.ZFBWK_BODY }}
-        ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
+    # env:
+    #     ZFBWK_BODY: ${{ secrets.ZFBWK_BODY }}
+    #     ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
     steps:
       # - name: Checkout
       #   run: |
