@@ -10,9 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    env:
-        # ZFBWK_BODY: ${{ toJson(fromJson(secrets.ZFBWK_BODY)) }}
-        ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
     steps:
       # - name: Checkout
       #   run: |
@@ -30,8 +27,7 @@ jobs:
         # cd ~/Scripts
         run: |
           echo "ZFBWK_BODY=$(echo ${{ secrets.ZFBWK_BODY }} | base64 -d)" >> $GITHUB_ENV
-          echo $ZFBWK_BODY
-          echo $ZFBWK_HEADER
+          echo "ZFBWK_HEADER=$(echo ${{ secrets.ZFBWK_HEADER }} | base64 -d)" >> $GITHUB_ENV
           cd scripts
           npm config set package-lock false
           npm install
