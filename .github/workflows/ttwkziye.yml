@@ -1,0 +1,34 @@
+name: 快手
+ 
+on:
+  workflow_dispatch:
+  schedule:
+     - cron: '15 19 * * *'
+  watch:
+    types: started
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
+        ZFBWK_BODY: ${{ secrets.ZFBWK_BODY }}
+    steps:
+      - name: Checkout
+        run: |
+          git clone https://github.com/ziye12/JavaScript.git ~/Scripts
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: |
+          cd ~/Scripts
+          npm config set package-lock false
+          npm install
+      - name: 运行 【快手视频签到】
+        run: |
+          cd ~/Scripts
+          node Task/ttwkziye.js
+        env:
+          BARK_PUSH: ${{ secrets.BARK_PUSH || github.event.client_payload.BARK_PUSH }}
