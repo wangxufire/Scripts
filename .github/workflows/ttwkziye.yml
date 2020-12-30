@@ -25,13 +25,14 @@ jobs:
       - name: npm install
         run: |
           cd scripts
-          # cd ~/Scripts
+ # cd ~/Scripts
           npm config set package-lock false
           npm install
       - name: 运行 【天天挖矿签到】
         run: |
           cd scripts
-          # cd ~/Scripts
-          node Task/ttwkziye.js
+# cd ~/Scripts
+# node Task/ttwkziye.js
+          node test.js
         env:
           BARK_PUSH: ${{ secrets.BARK_PUSH || github.event.client_payload.BARK_PUSH }}
