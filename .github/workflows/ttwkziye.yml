@@ -14,21 +14,24 @@ jobs:
         ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
         ZFBWK_BODY: ${{ secrets.ZFBWK_BODY }}
     steps:
-      - name: Checkout
-        run: |
-          git clone https://github.com/ziye12/JavaScript.git ~/Scripts
+      # - name: Checkout
+      #   run: |
+      #     git clone https://github.com/ziye12/JavaScript.git ~/Scripts
+      
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - name: npm install
         run: |
-          cd ~/Scripts
+          cd scripts
+          # cd ~/Scripts
           npm config set package-lock false
           npm install
       - name: 运行 【天天挖矿签到】
         run: |
-          cd ~/Scripts
+          cd scripts
+          # cd ~/Scripts
           node Task/ttwkziye.js
         env:
           BARK_PUSH: ${{ secrets.BARK_PUSH || github.event.client_payload.BARK_PUSH }}
