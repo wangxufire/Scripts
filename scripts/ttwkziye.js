@@ -147,6 +147,7 @@ function GetCookie() {
 //天天挖矿
 function getsign() {
   return new Promise((resolve, reject) => {
+    console.log(`headerVal:${headerVal}`)
     let signurl = {
       url: `https://operation-api.jimistore.com/api/mining/v1/sign/createSign`,
       headers: JSON.parse(headerVal), body: bodyVal
