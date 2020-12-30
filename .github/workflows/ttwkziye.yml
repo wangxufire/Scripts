@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        ZFBWK_BODY: ${{ secrets.ZFBWK_BODY }}
-        ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
+      ZFBWK_BODY: ${{ secrets.ZFBWK_BODY }}
+      ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
       # - name: Checkout
       #   run: |
       #     git clone https://github.com/ziye12/JavaScript.git ~/Scripts
