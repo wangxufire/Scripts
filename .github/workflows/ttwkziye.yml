@@ -1,4 +1,4 @@
-name: 快手
+name: 支付宝天天挖矿
  
 on:
   workflow_dispatch:
