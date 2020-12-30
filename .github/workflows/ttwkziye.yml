@@ -25,6 +25,8 @@ jobs:
       - name: npm install
         # cd ~/Scripts
         run: |
+          pwd
+          ls
           cd scripts
           npm config set package-lock false
           npm install
