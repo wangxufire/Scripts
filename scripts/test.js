@@ -64,7 +64,7 @@ if ($.isNode()) {
     wkbody = process.env.ZFBWK_BODY.split('\n');
     console.log(`您选择的是用换行隔开\n`)
   } else {
-    wkbody = process.env.ZFBWK_BODY.split()
+    wkbody = `{"timestamp":1609303781490,"userId":"8a28a661768870690176a7d403dd20bd","alipayUserId":"2088602130000835","phone":"17611203367","shareUserId":"","shareAlipayUserId":"","sharePhone":"","registerTime":1609133458000,"sign":"7709b3421751634b9fe8acdc57701de5"}`.split()
   };
   //判定读取Secret合集，赋值于bodyArr与headerArr
   if (process.env.ZFBWK_HEADER && process.env.ZFBWK_HEADER.indexOf('#') > -1) {
@@ -73,7 +73,7 @@ if ($.isNode()) {
   else if (process.env.ZFBWK_HEADER && process.env.ZFBWK_HEADER.split('\n').length > 0) {
     wkheader = process.env.ZFBWK_HEADER.split('\n');
   } else {
-    wkheader = process.env.ZFBWK_HEADER.split()
+    wkheader = `{"Accept-Encoding":"gzip, deflate, br","userid":"8a28a661768870690176a7d403dd20bd","appid":"jimih5","sceneType":"alipayMiniPrograms","channelname":"ttwkAlipayMini","alipayMiniMark":"KAKKhkQCqek0wCfUhRxVaLC0i+c7sl01Y7fbdJTlo35EGCrhIKscZTNLfLIwFcmprzrk7BxjENJ8s9Us8//QgN0ozndXcf/9NmHd5eJBfF8=","Host":"operation-api.jimistore.com","verifyVersion":"2.0","appversion":"1.5.1","Connection":"keep-alive","signature":"688053a8025acb39ac75798167af837c","Accept-Language":"zh-cn","User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/18D5030e Ariver/1.1.0 AliApp(AP/10.2.10.6010) Nebula WK RVKType(0) AlipayDefined(nt:WIFI,ws:428|926|3.0) AlipayClient/10.2.10.6010 Language/zh-Hans Region/CN NebulaX/1.0.0","Content-Type":"application/json","Referer":"https://2021001185608210.hybrid.alipay-eco.com/2021001185608210/0.2.2012241952.15/index.html#pages/home/home","signDate":"1609303781491","deviceid":"4627662d-a66a-49ed-aee8-5746947d299d","token":"eyJraWQiOiI0NjI3NjYyZC1hNjZhLTQ5ZWQtYWVlOC01NzQ2OTQ3ZDI5OWQiLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4YTI4YTY2MTc2ODg3MDY5MDE3NmE3ZDQwM2RkMjBiZCIsImlzcyI6IiIsImV4cCI6MTYxMTAzMTc3N30.9Jiwt4Xia_AuMOjM3K6y3yOOs-8R-l-TwoMDNN8bEhQ","timestamp":"1609303781491","Accept":"application/json","osversion":"OSVersion","ostype":"2","Accept-Charset":"utf-8","Cookie":"","Content-Length":"254"}`.split()
   };
   Object.keys(wkbody).forEach((item) => {
     if (wkbody[item]) {
