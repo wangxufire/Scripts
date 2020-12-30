@@ -12,7 +12,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     env:
         ZFBWK_BODY: ${{ toJson(fromJson(secrets.ZFBWK_BODY)) }}
-        ZFBWK_HEADER: ${{ secrets.ZFBWK_HEADER }}
+        ZFBWK_HEADER: ${{ toJson(fromJson(secrets.ZFBWK_HEADER)) }}
     steps:
       # - name: Checkout
       #   run: |
@@ -38,7 +38,6 @@ jobs:
         # cd ~/Scripts
         # node Task/ttwkziye.js
         run: |
-          cd scripts
-          node test.js
+          node scripts/ttwkziye.js
         env:
           BARK_PUSH: ${{ secrets.BARK_PUSH || github.event.client_payload.BARK_PUSH }}
