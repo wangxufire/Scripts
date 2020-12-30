@@ -11,30 +11,30 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
-      # - name: Checkout
-      #   run: |
-      #     git clone https://github.com/ziye12/JavaScript.git ~/Scripts
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: main
+        run: |
+          git clone https://github.com/ziye12/JavaScript.git ~/Scripts
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+      #   with:
+      #     ref: main
       
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - name: npm install
-        # cd ~/Scripts
+          # cd scripts
         run: |
           echo "ZFBWK_BODY=$(echo ${{ secrets.ZFBWK_BODY }} | base64 -d)" >> $GITHUB_ENV
           echo "ZFBWK_HEADER=$(echo ${{ secrets.ZFBWK_HEADER }} | base64 -d)" >> $GITHUB_ENV
-          cd scripts
+          cd ~/Scripts
           npm config set package-lock false
           npm install
       - name: 运行 【天天挖矿签到】
-        # cd ~/Scripts
-        # node Task/ttwkziye.js
+          # node scripts/ttwkziye.js
         run: |
-          node scripts/ttwkziye.js
+          cd ~/Scripts
+          node Task/ttwkziye.js
         env:
           BARK_PUSH: ${{ secrets.BARK_PUSH || github.event.client_payload.BARK_PUSH }}
