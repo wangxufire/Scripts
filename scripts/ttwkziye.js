@@ -85,7 +85,8 @@ if ($.isNode()) {
   bodyArr.push($.getdata('sy_body_wk'))//判定读取ck
   headerArr.push($.getdata('sy_header_wk'))//判定读取ck
 }
-
+console.log(headerArr)
+console.log(bodyArr)
 //异步运行
 !(async () => {
   if (!bodyArr[0]) {
