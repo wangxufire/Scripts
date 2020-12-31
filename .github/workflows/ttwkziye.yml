@@ -3,7 +3,7 @@ name: 支付宝天天挖矿
 on:
   workflow_dispatch:
   schedule:
-     - cron: '15 8 * * *'
+     - cron: '5 18 * * *'
   watch:
     types: started
 jobs:
