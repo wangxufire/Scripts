@@ -1,0 +1,35 @@
+name: 聚看点
+ 
+on:
+  workflow_dispatch:
+  schedule:
+     - cron: '5 18 * * *'
+  watch:
+    types: started
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        JUKAN_COOKIE: ${{ secrets.JUKAN_COOKIE }}
+        JUKAN_BODY: ${{ secrets.JUKAN_BODY }}
+    steps:
+      - name: Checkout
+        run: |
+          git clone https://github.com/Sunert/Scripts.git ~/Scripts
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: |
+          cd ~/Scripts
+          npm config set package-lock false
+          npm install
+      - name: 运行 【聚看点】
+        if: env.JUKAN_COOKIE
+        run: |
+          cd ~/Scripts
+          node Task/jukan.js
+        env:
+          BARK_PUSH: ${{ secrets.BARK_PUSH || github.event.client_payload.BARK_PUSH }}
