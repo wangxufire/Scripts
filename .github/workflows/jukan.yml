@@ -13,6 +13,7 @@ jobs:
     env:
         JUKAN_COOKIE: ${{ secrets.JUKAN_COOKIE }}
         JUKAN_BODY: ${{ secrets.JUKAN_BODY }}
+        TZ: Asia/shanghai
     steps:
       - name: Checkout
         run: |
