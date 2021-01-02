@@ -3,7 +3,7 @@ name: 聚看点
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/20 */2 * * *'
+     - cron: '0,20 * * * *'
   watch:
     types: started
 jobs:
@@ -11,13 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        JUKAN_COOKIE: ${{ secrets.JUKAN_COOKIE }}
-        JUKAN_BODY: ${{ secrets.JUKAN_BODY }}
-        TZ: Asia/shanghai
+        JKD_COOKIE: ${{ secrets.JKD_COOKIE }}
+        JKD_WITHDRAW: ${{ secrets.JKD_WITHDRAW }}
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/Sunert/Scripts.git ~/Scripts
+          git clone https://github.com/shylocks/Loon.git ~/Scripts
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -28,9 +27,9 @@ jobs:
           npm config set package-lock false
           npm install
       - name: 运行 【聚看点】
-        if: env.JUKAN_COOKIE
+        if: env.JKD_COOKIE
         run: |
           cd ~/Scripts
-          node Task/jukan.js
+          node jkd.js
         env:
           BARK_PUSH: ${{ secrets.BARK_PUSH || github.event.client_payload.BARK_PUSH }}
