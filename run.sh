@@ -6,6 +6,7 @@ for((i=1;i<=250;i++));
 do   
   echo "run $i times"
   python3 ./scripts/qq_read.py
+  python3 ./scripts/bilibili.py
   current=`date +%s`
   runtime=`expr $current - $start`
   if (($runtime>20880)); then # 5.8*60*60
