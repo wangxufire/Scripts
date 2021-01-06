@@ -1,6 +1,9 @@
+## 紧急通知
+由于本人版本退回操作，下次更新脚本可能会遇到一个错误 `unable to auto-detect email address` [解决方法](https://blog.csdn.net/liufangbaishi2014/article/details/50037507)或者保存配置文件，然后删掉 `Scripts` 文件夹**重新克隆本仓库**，仅此次更新会这样（2021/1/5）
+
 ## 描述
 
-一个使用 `Python` 语言写的薅羊毛脚本仓库，支持 `github action` 和 `linux/windows virtual private server` 
+一个使用 `Python` 语言写的薅羊毛脚本仓库，支持 `github action` 和 `linux/windows virtual private server`。 
 
 ## 部署方式
 
@@ -42,15 +45,10 @@
 
 ### 二、github action
 
-* 添加一个 `secrets` - `CONFIG` ， `Value` 内容请复制目录下 `./config/config.yml.example` 所有内容。
-
-* 填写对应的推送方式的 `key` 或者 `code`。
-
-* 找到想要运行的脚本，设置对应的配置信息。
-
-* 手动 `star` 一下仓库，看下 `Action` 是否正常运行。
-
-* 定时同步仓库：添加一个 `secrets` - `PAT` ，[教程](https://www.jianshu.com/p/bb82b3ad1d11)。
+* 复制该文件 `./config/config.yml.example` 所有内容，填写相应的配置信息（推送的 `Key` 或者 `Token` 以及脚本所需要的 `Cookie` 等等）；
+* 在 Settings -> Secrets -> New repository secret 这边添加一个新的 `secrets` - `CONFIG` ， `Value` 就是第一步你填写的配置信息；
+* 手动 `star` 一下仓库，看下 `Action` 是否正常运行；
+* 定时同步仓库：添加一个 `secrets` - `PAT` ，[教程](https://www.jianshu.com/p/bb82b3ad1d11)（不建议打开，因为高版本脚本不兼容低版本的配置文件）。
 
 ### 三、Docker
 
@@ -84,18 +82,17 @@
 打开推送方式：将 `config.yml` 里面 `notify` 选项中，参数 `enable` 设置为 `true`
 
 ## 支持的脚本任务
-
-### 企鹅读书
-
-* 使用脚本前务必看一遍教程，[脚本地址](https://raw.githubusercontent.com/TNanko/Scripts/master/scripts/qq_read.py)，[使用教程](https://github.com/TNanko/Scripts/blob/master/docs/qq_read.md)
-
-* 此脚本使用 `Python` 语言根据[原js脚本](https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js)重写，并在原有的基础上扩展了一些功能。
-
-### `bilibili` 签到
-
-* 使用脚本前务必看一遍教程，[脚本](https://raw.githubusercontent.com/TNanko/Scripts/master/scripts/bilibili.py)，[使用教程](https://github.com/TNanko/Scripts/blob/master/docs/bilibili.md)
+* 企鹅读书，[脚本地址](https://raw.githubusercontent.com/TNanko/Scripts/master/scripts/qq_read.py)，[使用教程](https://github.com/TNanko/Scripts/blob/master/docs/qq_read.md)，[原作者js版](https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js)
+* `bilibili` 签到，[脚本地址](https://raw.githubusercontent.com/TNanko/Scripts/master/scripts/bilibili.py)，[使用教程](https://github.com/TNanko/Scripts/blob/master/docs/bilibili.md)
 
 ## 关于版本
+[更新日志](https://github.com/TNanko/Scripts/blob/master/docs/update.md)
+版本检测原则
+* 放在前面说：**高版本的脚本不兼容低版本的配置文件**，更新脚本前务必看一下配置文件对应的**子版本号**是否发生改变，如果变动则必须更新配置文件，否则程序会报错（**当前版本的配置文件对应当前版本的脚本最佳**）；
+* 提醒使用者更新脚本。一般情况下，最新版本的脚本会在原有的基础上增加新功能和修复 `bug` ；
+* 版本检测使用范围
+    * 签到脚本，跑任务脚本等非卡点类脚本默认每次运行都会版本检测；
+    * 卡点脚本（后期可能会写）默认在晚上 `10` 单独进行一次版本检测，卡点运行时则不会进行版本检测。
 
 ### 配置文件的版本
 
